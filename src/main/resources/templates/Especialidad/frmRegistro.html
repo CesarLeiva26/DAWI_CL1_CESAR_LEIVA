@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <meta charset="UTF-8">
@@ -7,15 +8,22 @@
 <body>
 	<nav th:insert="layout::menu"></nav>
 	<div class="card">
-		<div class="card-header">Registro de Estado</div>
+		<div class="card-header">Registro de Especialidad</div>
 		<div class="card-body">
-			<form th:action="@{/Especialidad/frmRegEspecialidad}" method="post"
-				th:object="${especForm}">
+			<form th:action="@{/Especialidad/frmRegistro}" method="post"
+				th:object="${especialidadForm}">
 				<div class="mb-3">
 					<label for="exampleFormControlInput1" class="form-label">
-						Descripción </label> <input type="text" class="form-control"
-						id="exampleFormControlInput1" th:field="*{descespecialidad}">
+						ID </label> <input type="text" class="form-control"
+						id="exampleFormControlInput1" th:field="*{idesp}"> <label
+						for="exampleFormControlInput1" class="form-label"> NOMBRE
+					</label> <input type="text" class="form-control"
+						id="exampleFormControlInput1" th:field="*{nomesp}"> <label
+						for="exampleFormControlInput1" class="form-label"> COSTO </label>
+					<input type="text" class="form-control"
+						id="exampleFormControlInput1" th:field="*{costo}">
 				</div>
+
 				<div class="text-center">
 					<button type="submit" class="btn btn-secondary">Guardar</button>
 				</div>

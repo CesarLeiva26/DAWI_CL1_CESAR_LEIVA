@@ -11,37 +11,40 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import pe.edu.cibertec.DAWI_CL1_CESAR_LEIVA.model.bd.Especialidad;
 import pe.edu.cibertec.DAWI_CL1_CESAR_LEIVA.service.EspecialidadService;
 
-@RequestMapping("/Especialidad")
 @Controller
+@RequestMapping("/Especialidad")
 public class EspecialidadController {
 
 	@Autowired
 	private EspecialidadService especialidadService;
-	
-	@GetMapping ("/frmLista")
+
+	@GetMapping("/frmLista")
 	public String frmlista(Model model) {
 		model.addAttribute("listaespecialidad", especialidadService.listarEspecialidad());
 		return "Especialidad/frmLista";
+ 
 	}
 
-	@GetMapping("/frmRegEspe")
-	public String frmRegEstado(Model model) {
-		model.addAttribute("especForm", new Especialidad());
+	@GetMapping("/frmRegistro")
+	public String frmRegEspecialidad(Model model) {
+		model.addAttribute("especialidadForm", new Especialidad());
 		model.addAttribute("visualizar", false);
-		return "Estado/frmRegEstado";
+		return "Especialidad/frmRegistro";
 	}
 
-	@PostMapping("frmRegEspe")
-	public String registrarEstado(@ModelAttribute("especForm") Especialidad especialidad, Model model) {
-		String mensaje = "Estado registrado correctamente";
+	@PostMapping("frmRegistro")
+	public String frmRegEspecialidad(@ModelAttribute("especialidadForm") Especialidad especialidad, Model model) {
+		String mensaje = "Especialidad registrado correctamente";
 		try {
 			especialidadService.registrarEspecialidad(especialidad);
 		} catch (Exception e) {
 			mensaje = "Estado no registrado";
 		}
-		model.addAttribute("estadoForm", new Especialidad());
+		model.addAttribute("especialidadForm", new Especialidad());
 		model.addAttribute("visualizar", true);
 		model.addAttribute("respuesta", mensaje);
-		return "Estado/frmRegEstado";
+		return "Especialidad/frmRegistro";
 	}
+
+
 }
